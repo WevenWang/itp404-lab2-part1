@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Client-side Templating</title>
+</head>
+<body>
+
+  <div id="loading"></div>
+
+  <div id="results">
+    <template id="template">
+      {{#each restaurants}}
+          <div class="restaurant">
+
+              <h3> Name: {{name}}</h3>
+              <p> Location: {{location}}</p>
+
+            <p> Owned By:
+              <ul>
+                {{#each ownedBy}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </p>
+
+            <a href=
+      				{{yelpPage}} target="_blank">Check us out on Yelp.</a>
+
+
+              {{#if acceptsApplePay}}
+
+              <br></br>
+
+                <img src="data:image/png;base64,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"
+                height=50px>
+
+
+              {{else}}
+
+                <p>No Apple Pay</p>
+
+
+              {{/if}}
+
+
+            <br></br>
+
+
+
+
+
+
+
+
+          </div>
+
+      {{/each}}
+
+
+
+
+
+
+    </template>
+
+
+
+
+  </div>
+
+
+
+<script src="jquery-3.3.1.js"></script>
+<script src="handlebars-v4.0.11.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
